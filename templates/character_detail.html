@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ character.name }} - キャラクター詳細</title>
+</head>
+<body>
+    <h1>{{ character.name }}</h1>
+
+    <!-- 属性を正式名称で表示 -->
+    <p>属性: 
+        {% set type_names = {'Pr': 'Princess', 'Fa': 'Fairy', 'An': 'Angel'} %}
+        {{ type_names.get(character.type, character.type) }}
+    </p>
+
+    <!-- ソロ曲 -->
+    <h2>ソロ曲</h2>
+    {% if solo_songs %}
+        <ul>
+        {% for song in solo_songs %}
+            <li><a href="{{ url_for('song_detail', song_id=song.song_id) }}">{{ song.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>なし</p>
+    {% endif %}
+
+    <!-- ユニット曲 -->
+    <h2>ユニット曲</h2>
+    {% if unit_songs %}
+        <ul>
+        {% for song in unit_songs %}
+            <li><a href="{{ url_for('song_detail', song_id=song.song_id) }}">{{ song.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>なし</p>
+    {% endif %}
+
+    <!-- 全体曲 -->
+    <h2>全体曲</h2>
+    {% if all_songs %}
+        <ul>
+        {% for song in all_songs %}
+            <li><a href="{{ url_for('song_detail', song_id=song.song_id) }}">{{ song.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>なし</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('index') }}">トップページに戻る</a></p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ song.title }}のキャラクター</title>
+</head>
+<body>
+    <h1>{{ song.title }}に参加しているキャラクター</h1>
+    <a href="/">← キャラクター一覧に戻る</a>
+    <ul>
+    {% for c in characters %}
+        <!-- キャラクター名をリンクにする -->
+        <li><a href="/character/{{ c.character_id }}">{{ c.name }} ({{ c.type }})</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
+

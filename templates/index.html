@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>キャラクター一覧</title>
+</head>
+<body>
+    <h1>キャラクター一覧</h1>
+
+    <!-- 曲カテゴリリンク -->
+    <h2>楽曲一覧：</h2>
+    <p>
+        {% set song_categories = [('ALL','ALL'),('全体曲','全体曲'),('ユニット曲','ユニット曲'),('ソロ曲','ソロ曲')] %}
+        {% for cat_id, cat_name in song_categories %}
+            <a href="{{ url_for('songs_list', category=cat_id) }}">{{ cat_name }}</a>
+            {% if not loop.last %} / {% endif %}
+        {% endfor %}
+    </p>
+
+    <!-- キャラクター一覧 -->
+    <ul>
+    {% for character in characters %}
+        <li>
+            <a href="{{ url_for('character_detail', character_id=character.character_id) }}">
+                {{ character.name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

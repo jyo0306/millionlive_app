@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>楽曲一覧 - {{ selected_category_name }}</title>
+</head>
+<body>
+    <h1>楽曲一覧 - {{ selected_category_name }}</h1>
+
+    {% if selected_category_name in ['ALL','全体曲'] %}
+        <h2>全体曲</h2>
+        <ul>
+        {% for song in songs if song['category'] == '全体曲' %}
+            <li><a href="{{ url_for('song_detail', song_id=song['song_id']) }}">{{ song['title'] }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if selected_category_name in ['ALL','ユニット曲'] %}
+        <h2>ユニット曲</h2>
+        <ul>
+        {% for song in songs if song['category'] == 'ユニット曲' %}
+            <li><a href="{{ url_for('song_detail', song_id=song['song_id']) }}">{{ song['title'] }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if selected_category_name in ['ALL','ソロ曲'] %}
+        <h2>ソロ曲</h2>
+        <ul>
+        {% for song in songs if song['category'] == 'ソロ曲' %}
+            <li><a href="{{ url_for('song_detail', song_id=song['song_id']) }}">{{ song['title'] }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <p><a href="{{ url_for('index') }}">トップページに戻る</a></p>
+</body>
+</html>
